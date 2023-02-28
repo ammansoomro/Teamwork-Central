@@ -42,7 +42,6 @@ public class Recursive {
    *   @return a String that is a binary representation of the parameter n
    */
 
-  //  This should also solve for negative values
   public static String getBinary(int n) {
     if (n == Integer.MIN_VALUE) {
       throw new IllegalArgumentException(

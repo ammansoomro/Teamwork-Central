@@ -29,21 +29,159 @@ public class RecursiveTester {
 
   // run the tests
   public static void main(String[] args) {
-    doBinaryTests(); // 1 Fail
-    doFlowOffMapTests(); // 1 Fail
+    // doBinaryTests();
     // doReverseTests();
     // doNextIsDoubleTests();
     // doListMnemonicsTests();
     // doCarpetTest();
     // doFairTeamsTests();
     // doMazeTests();
-    // studentTests();
+    // doFlowOffMapTests();
+    studentTests();
   }
 
   // post: run student test
   private static void studentTests() {
-    // CS314 students put your tests here
+    // ============= For doBinary =============
+    int input = 42;
+    String actualBinary = Recursive.getBinary(input);
+    String expectedBinary = "101010";
+    if (actualBinary.equals(expectedBinary)) {
+      System.out.println("Test 1 passed. get binary.");
+    } else {
+      System.out.println(
+        "Test 1 failed. get binary. expected: " +
+        expectedBinary +
+        ", actual: " +
+        actualBinary
+      );
+    }
 
+    input = 256;
+    actualBinary = Recursive.getBinary(input);
+    expectedBinary = "100000000";
+    if (actualBinary.equals(expectedBinary)) {
+      System.out.println("Test 2 passed. get binary.");
+    } else {
+      System.out.println(
+        "Test 2 failed. get binary. expected: " +
+        expectedBinary +
+        ", actual: " +
+        actualBinary
+      );
+    }
+
+    input = -5;
+    actualBinary = Recursive.getBinary(input);
+    expectedBinary = "-101";
+    if (actualBinary.equals(expectedBinary)) {
+      System.out.println("Test 3 passed. get binary.");
+    } else {
+      System.out.println(
+        "Test 3 failed. get binary. expected: " +
+        expectedBinary +
+        ", actual: " +
+        actualBinary
+      );
+    }
+
+    // ============= For Reverse =============
+    String inputReverse = "";
+    String actualRev = Recursive.revString(inputReverse);
+    String expectedRev = "";
+    if (actualRev.equals(expectedRev)) {
+      System.out.println("Test 4 passed. reverse string.");
+    } else {
+      System.out.println(
+        "Test 3 failed. reverse string. expected: " +
+        expectedRev +
+        ", actual: " +
+        actualRev
+      );
+    }
+
+    inputReverse = "Was it a car or a cat I saw?";
+    actualRev = Recursive.revString(inputReverse);
+    expectedRev = "?was I tac a ro rac a ti saW";
+    if (actualRev.equals(expectedRev)) {
+      System.out.println("Test 5 passed. reverse string.");
+    } else {
+      System.out.println(
+        "Test 4 failed. reverse string. expected: " +
+        expectedRev +
+        ", actual: " +
+        actualRev
+      );
+    }
+
+    inputReverse = "A man a plan a canal Panama";
+    actualRev = Recursive.revString(inputReverse);
+    expectedRev = "amanaP lanac a nalp a nam A";
+    if (actualRev.equals(expectedRev)) {
+      System.out.println("Test 6 passed. reverse string.");
+    } else {
+      System.out.println(
+        "Test 5 failed. reverse string. expected: " +
+        expectedRev +
+        ", actual: " +
+        actualRev
+      );
+    }
+
+    int[] numsForDouble = { 37, 74, 148 };
+    int actualDouble = Recursive.nextIsDouble(numsForDouble);
+    int expectedDouble = 2;
+    if (actualDouble == expectedDouble) {
+      System.out.println("Test 7 passed. next is double.");
+    } else {
+      System.out.println(
+        "Test 7 failed. next is double. expected: " +
+        expectedDouble +
+        ", actual: " +
+        actualDouble
+      );
+    }
+
+    numsForDouble = new int[] { 37, 74, 148, 296, 592, 1184, 2368 };
+    actualDouble = Recursive.nextIsDouble(numsForDouble);
+    expectedDouble = 6;
+    if (actualDouble == expectedDouble) {
+      System.out.println("Test 8 passed. next is double.");
+    } else {
+      System.out.println(
+        "Test 8 failed. next is double. expected: " +
+        expectedDouble +
+        ", actual: " +
+        actualDouble
+      );
+    }
+
+    numsForDouble = new int[] { 23 };
+    actualDouble = Recursive.nextIsDouble(numsForDouble);
+    expectedDouble = 0;
+    if (actualDouble == expectedDouble) {
+      System.out.println("Test 9 passed. next is double.");
+    } else {
+      System.out.println(
+        "Test 9 failed. next is double. expected: " +
+        expectedDouble +
+        ", actual: " +
+        actualDouble
+      );
+    }
+
+    int mazeTestNum = 10;
+    String maze = "EYYSG$";
+    runMazeTest(maze, 2, 2, mazeTestNum++);
+
+    int[] abilities = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+    showFairTeamsResults(Recursive.minDifference(5, abilities), 0, 11);
+
+    abilities = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+    showFairTeamsResults(Recursive.minDifference(10, abilities), 0, 12);
+
+    abilities = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+    showFairTeamsResults(Recursive.minDifference(1, abilities), 0, 13);
   }
 
   private static void doMazeTests() {
@@ -282,6 +420,17 @@ public class RecursiveTester {
       System.out.println("Test 3 passed. Phone mnemonics.");
     } else {
       System.out.println("Test 3 failed. Phone mnemonics.");
+      System.out.println("Expected result: " + expected);
+      System.out.println("Actual result  : " + mnemonics);
+    }
+
+    mnemonics = Recursive.listMnemonics("0");
+    expected.clear();
+    expected.add("0");
+    if (mnemonics.equals(expected)) {
+      System.out.println("Test 4 passed. Phone mnemonics.");
+    } else {
+      System.out.println("Test 4 failed. Phone mnemonics.");
       System.out.println("Expected result: " + expected);
       System.out.println("Actual result  : " + mnemonics);
     }

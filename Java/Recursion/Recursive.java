@@ -41,6 +41,8 @@ public class Recursive {
    *   @param n the base 10 int to convert to base 2
    *   @return a String that is a binary representation of the parameter n
    */
+
+  //  This should also solve for negative values
   public static String getBinary(int n) {
     if (n == Integer.MIN_VALUE) {
       throw new IllegalArgumentException(
@@ -49,13 +51,19 @@ public class Recursive {
         "Integer.MIN_VALUE. n: " +
         n
       );
-    } else {
-      if (n == 0) {
+    }
+    else{
+      if (n < 0) {
+        return "-" + getBinary(-n);
+      }
+      else if (n == 0) {
         return "0";
-      } else if (n == 1) {
+      }
+      else if (n == 1) {
         return "1";
-      } else {
-        return getBinary(n / 2) + (n % 2);
+      }
+      else {
+        return getBinary(n / 2) + n % 2;
       }
     }
   }

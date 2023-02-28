@@ -1,8 +1,2 @@
-# Ignore .DS_Store everywhere
 .DS_Store
-
-# Ignore all the files that end with .class
 *.class
-
-# Ignore gitignore 
-.gitignore

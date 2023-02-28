@@ -3,3 +3,6 @@
 
 # Ignore all the files that end with .class
 *.class
+
+# Ignore gitignore 
+.gitignore

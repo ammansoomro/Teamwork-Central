@@ -39,7 +39,7 @@ public class RecursiveTester {
     System.out.println("==================== ListMnemonics Test ==================== ");
     doListMnemonicsTests();
     System.out.println("==================== Carpet Test ==================== ");
-    // doCarpetTest();
+    doCarpetTest();
     System.out.println("==================== FairTeams Test ==================== ");
     doFairTeamsTests();
     System.out.println("==================== Maze Test ==================== ");

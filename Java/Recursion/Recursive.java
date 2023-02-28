@@ -314,39 +314,23 @@ public class Recursive {
     int col,
     int height
   ) {
-    if (
-      row == 0 || row == map.length - 1 || col == 0 || col == map[0].length - 1
-    ) {
+    if (row == 0 || row == map.length - 1 || col == 0 || col == map[0].length - 1) {
       return true;
     } else {
-      int min = Integer.MAX_VALUE;
-      int minRow = 0;
-      int minCol = 0;
-      if (inbounds(row - 1, col, map) && map[row - 1][col] < min) {
-        min = map[row - 1][col];
-        minRow = row - 1;
-        minCol = col;
+      int[][] neighbors = {
+        { row - 1, col },
+        { row + 1, col },
+        { row, col - 1 },
+        { row, col + 1 },
+      };
+      for (int[] neighbor : neighbors) {
+        if (map[neighbor[0]][neighbor[1]] < height) {
+          if (canFlowOfMap(map, neighbor[0], neighbor[1], map[neighbor[0]][neighbor[1]])) {
+            return true;
+          }
+        }
       }
-      if (inbounds(row + 1, col, map) && map[row + 1][col] < min) {
-        min = map[row + 1][col];
-        minRow = row + 1;
-        minCol = col;
-      }
-      if (inbounds(row, col - 1, map) && map[row][col - 1] < min) {
-        min = map[row][col - 1];
-        minRow = row;
-        minCol = col - 1;
-      }
-      if (inbounds(row, col + 1, map) && map[row][col + 1] < min) {
-        min = map[row][col + 1];
-        minRow = row;
-        minCol = col + 1;
-      }
-      if (min < height) {
-        return canFlowOfMap(map, minRow, minCol, min);
-      } else {
-        return false;
-      }
+      return false;
     }
   }
 

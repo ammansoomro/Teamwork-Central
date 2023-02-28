@@ -29,14 +29,24 @@ public class RecursiveTester {
 
   // run the tests
   public static void main(String[] args) {
-    // doBinaryTests();
-    // doReverseTests();
-    // doNextIsDoubleTests();
-    // doListMnemonicsTests();
+
+    System.out.println("==================== Binary Test ==================== ");
+    doBinaryTests();
+    System.out.println("==================== Reverse Test ==================== ");
+    doReverseTests();
+    System.out.println("==================== NextIsDouble Test ==================== ");
+    doNextIsDoubleTests();
+    System.out.println("==================== ListMnemonics Test ==================== ");
+    doListMnemonicsTests();
+    System.out.println("==================== Carpet Test ==================== ");
     // doCarpetTest();
-    // doFairTeamsTests();
-    // doMazeTests();
-    // doFlowOffMapTests();
+    System.out.println("==================== FairTeams Test ==================== ");
+    doFairTeamsTests();
+    System.out.println("==================== Maze Test ==================== ");
+    doMazeTests();
+    System.out.println("==================== FlowOffMap Test ==================== ");
+    doFlowOffMapTests();
+    System.out.println("==================== Student Test ==================== ");
     studentTests();
   }
 
@@ -174,14 +184,8 @@ public class RecursiveTester {
     String maze = "EYYSG$";
     runMazeTest(maze, 2, 2, mazeTestNum++);
 
-    int[] abilities = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
-    showFairTeamsResults(Recursive.minDifference(5, abilities), 0, 11);
-
-    abilities = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
-    showFairTeamsResults(Recursive.minDifference(10, abilities), 0, 12);
-
-    abilities = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
-    showFairTeamsResults(Recursive.minDifference(1, abilities), 0, 13);
+    int[] abilities = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    showFairTeamsResults(Recursive.minDifference(3, abilities), 1, 11);
   }
 
   private static void doMazeTests() {

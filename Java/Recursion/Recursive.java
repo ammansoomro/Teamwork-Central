@@ -483,27 +483,20 @@ public class Recursive {
 
     // Run the maze solver
     // boolean[][] visited = new boolean[numRows][numCols];
-    return runMazeSolver(rawMaze, numCoins, startRow, startCol);
+    return runMazeSolver(rawMaze, numCoins, startRow, startCol, numRows, numCols);
   }
 
-  private static int runMazeSolver(
-    char[][] maze,
-    int numCoins,
-    int row,
-    int col
-  ) {
-    int numRows = maze.length;
-    int numCols = maze[0].length;
-    if(row >= numRows || col >= numCols || maze[row][col] == '*') {
-      System.out.println(row + col);
+  private static int runMazeSolver(char[][] maze, int numCoins, int row, int col, int numRows, int numCols) {
+    if(row >= numRows || row < 0 || col >= numCols || col < 0 || maze[row][col] == '*') {
       return 0;
-    } else if(maze[row][col] == 'E') {
+    }
+    if(maze[row][col] == 'E') {
       if(numCoins == 0) {
         return 2;
       } else {
         return 1;
       }
-    } 
+    }
     char val = maze[row][col];
     if(maze[row][col] == '$') {
       numCoins--;
@@ -515,14 +508,13 @@ public class Recursive {
     } else if (maze[row][col] == 'Y') {
       maze[row][col] = '*';
     }
-    int right = runMazeSolver(maze, numCoins, numRows + 1, numCols);
-    int down = runMazeSolver(maze, numCoins, numRows, numCols + 1);
-    int left = runMazeSolver(maze, numCoins, numRows - 1, numCols);
-    int up = runMazeSolver(maze, numCoins, numRows, numCols - 1);
-    System.out.println(val + "rows: " + row + " numRows: " + numRows);
+    int right = runMazeSolver(maze, numCoins, row, col + 1, numRows, numCols);
+    int down = runMazeSolver(maze, numCoins, row + 1, col, numRows, numCols);
+    int left = runMazeSolver(maze, numCoins, row, col - 1, numRows, numCols);
+    int up = runMazeSolver(maze, numCoins, row - 1, col, numRows, numCols);
     maze[row][col] = val;
 
-      return Math.max(left, Math.max(down, Math.max(up, right)));
+    return Math.max(left, Math.max(down, Math.max(up, right)));
   }
 }
 

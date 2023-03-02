@@ -29,24 +29,14 @@ public class RecursiveTester {
 
   // run the tests
   public static void main(String[] args) {
-
-    System.out.println("==================== Binary Test ==================== ");
     doBinaryTests();
-    System.out.println("==================== Reverse Test ==================== ");
     doReverseTests();
-    System.out.println("==================== NextIsDouble Test ==================== ");
     doNextIsDoubleTests();
-    System.out.println("==================== ListMnemonics Test ==================== ");
     doListMnemonicsTests();
-    System.out.println("==================== Carpet Test ==================== ");
     doCarpetTest();
-    System.out.println("==================== FairTeams Test ==================== ");
     doFairTeamsTests();
-    System.out.println("==================== Maze Test ==================== ");
     doMazeTests();
-    System.out.println("==================== FlowOffMap Test ==================== ");
     doFlowOffMapTests();
-    System.out.println("==================== Student Test ==================== ");
     studentTests();
   }
 

@@ -6,10 +6,10 @@
 // adding edges in both directions. No limit on graph size,
 // but multi-edges (multiple edges between the same two
 // vertices) are not allowed.
-// 
-// For this implementation of graph, the vertices are 
+//
+// For this implementation of graph, the vertices are
 // long long, and the weights are doubles.  Example:
-// 
+//
 //   graph  G;
 //   G.addVertex(129850);
 //   G.addVertex(552985);
@@ -23,19 +23,17 @@
 #pragma once
 
 #include <iostream>
+#include <map>
+#include <set>
 #include <stdexcept>
 #include <vector>
-#include <set>
-#include <map>
 
 using namespace std;
 
-
-class graph
-{
+class graph {
 private:
-  vector<long long>    Vertices;
-  map<long long, int>  Vertex2Index;
+  vector<long long> Vertices;
+  map<long long, int> Vertex2Index;
   vector<map<int, double>> Edges;
   int EdgeCount;
 
@@ -85,13 +83,13 @@ public:
   //
   // getWeight
   //
-  // Returns the weight associated with a given edge.  If 
+  // Returns the weight associated with a given edge.  If
   // the edge exists, the weight is returned via the reference
-  // parameter and true is returned.  If the edge does not 
+  // parameter and true is returned.  If the edge does not
   // exist, the weight parameter is unchanged and false is
   // returned.
   //
-  bool getWeight(long long from, long long to, double& weight) const;
+  bool getWeight(long long from, long long to, double &weight) const;
 
   //
   // neighbors
@@ -113,7 +111,7 @@ public:
 
   //
   // print
-  // 
+  //
   // Prints the internal state of the graph for debugging purposes.
   //
   // Example:
@@ -121,6 +119,5 @@ public:
   //    ...
   //    G.dump(cout);  // dump to console
   //
-  void print(ostream& output) const;
-
+  void print(ostream &output) const;
 };

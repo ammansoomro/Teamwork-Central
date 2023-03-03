@@ -2,11 +2,11 @@
 
 //
 // A collection of footways / paths in the Open Street Map.
-// 
+//
 // Prof. Joe Hummel
 // Northwestern University
 // CS 211: Winter 2023
-// 
+//
 
 #pragma once
 
@@ -14,47 +14,39 @@
 
 #include "building.h"
 #include "footway.h"
-#include "tinyxml2.h"
 #include "graph.h"
 #include "nodes.h"
+#include "tinyxml2.h"
 using namespace std;
 using namespace tinyxml2;
-
 
 //
 // Keeps track of all the footways / paths in the map.
 //
-class Footways
-{
+class Footways {
 public:
   vector<Footway> MapFootways;
 
   //
   // readMapFootways
   //
-  // Given an XML document, reads through the document and 
+  // Given an XML document, reads through the document and
   // stores all the footways into the given vector.
   //
-  void readMapFootways(XMLDocument& xmldoc);
+  void readMapFootways(XMLDocument &xmldoc);
 
   //
   // intersectWithBuilding
-  // 
+  //
   // Outputs all the footways that intersect --- i.e. share
   // a common node --- with Building B.
   //
-  void intersectWithBuilding(Building& B);
+  void intersectWithBuilding(Building &B);
 
   //
   // accessors / getters
   //
   int getNumMapFootways();
 
-  //
-  // Add Edges to the graph for all the adjacent footways
-  //
-  void addEdgesToGraph(graph& G, Nodes& N);
-
+  void addEdgesToGraph(graph &G, Nodes &N);
 };
-
-

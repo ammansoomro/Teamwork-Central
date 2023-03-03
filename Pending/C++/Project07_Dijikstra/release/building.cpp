@@ -2,11 +2,11 @@
 
 //
 // A building in the Open Street Map.
-// 
+//
 // Prof. Joe Hummel
 // Northwestern University
 // CS 211: Winter 2023
-// 
+//
 
 #include <iostream>
 
@@ -14,20 +14,18 @@
 
 using namespace std;
 
-
 //
 // constructor
 //
 Building::Building(long long id, string name, string streetAddr)
-  : ID(id), Name(name), StreetAddress(streetAddr)
-{
+    : ID(id), Name(name), StreetAddress(streetAddr) {
   //
   // the proper technique is to use member initialization list above,
   // in the same order as the data members are declared:
   //
-  //this->ID = id;
-  //this->Name = name;
-  //this->StreetAddress = streetAddr;
+  // this->ID = id;
+  // this->Name = name;
+  // this->StreetAddress = streetAddr;
 
   // vector is default initialized by its constructor
 }
@@ -38,15 +36,13 @@ Building::Building(long long id, string name, string streetAddr)
 // Returns true if the building's nodes contains the given node id,
 // false if not.
 //
-bool Building::containsThisNode(long long nodeid)
-{
-  for (long long id : this->NodeIDs)
-  {
+bool Building::containsThisNode(long long nodeid) {
+  for (long long id : this->NodeIDs) {
     if (nodeid == id)
       return true;
   }
 
-  // 
+  //
   // if get here, not found:
   //
   return false;
@@ -54,24 +50,25 @@ bool Building::containsThisNode(long long nodeid)
 
 //
 // print
-// 
+//
 // prints information about a building --- id, name, etc. -- to
-// the console. The function is passed the Nodes for searching 
+// the console. The function is passed the Nodes for searching
 // purposes.
 //
-void Building::print(Nodes& nodes)
-{
+void Building::print(Nodes &nodes) {
+  double lat = 0.0, lon = 0.0;
   cout << this->Name << endl;
   cout << "Address: " << this->StreetAddress << endl;
   cout << "Building ID: " << this->ID << endl;
-
+  getLocation(lat, lon, nodes);
+  cout << "Approximate Location: "
+       << "(" << lat << ", " << lon << ")" << endl;
   cout << "Nodes:" << endl;
-  for (long long nodeid : this->NodeIDs)
-  {
+  for (long long nodeid : this->NodeIDs) {
     cout << "  " << nodeid << ": ";
 
-    double lat = 0.0;
-    double lon = 0.0;
+    lat = 0.0;
+    lon = 0.0;
     bool entrance = false;
 
     bool found = nodes.find(nodeid, lat, lon, entrance);
@@ -83,17 +80,28 @@ void Building::print(Nodes& nodes)
         cout << ", is entrance";
 
       cout << endl;
-    }
-    else {
+    } else {
       cout << "**NOT FOUND**" << endl;
     }
-  }//for
+  } // for
 }
 
 //
 // adds the given nodeid to the end of the vector.
 //
-void Building::add(long long nodeid)
-{
-  this->NodeIDs.push_back(nodeid);
+void Building::add(long long nodeid) { this->NodeIDs.push_back(nodeid); }
+
+void Building::getLocation(double &latitude, double &longitude, Nodes N) {
+  double sumOfLatitudes = 0;
+  double sumOfLongitudes = 0;
+  double lat = -1, lon = -1;
+  bool isEntrance = false;
+  for (long long Node : NodeIDs) {
+    N.find(Node, lat, lon, isEntrance);
+    sumOfLatitudes += lat;
+    sumOfLongitudes += lon;
+  }
+
+  latitude = sumOfLatitudes / this->NodeIDs.size();
+  longitude = sumOfLongitudes / this->NodeIDs.size();
 }

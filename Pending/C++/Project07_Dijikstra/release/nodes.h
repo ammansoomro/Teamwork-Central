@@ -2,19 +2,19 @@
 
 //
 // A collection of nodes in the Open Street Map.
-// 
+//
 // Prof. Joe Hummel
 // Northwestern University
 // CS 211: Winter 2023
-// 
+//
 // References:
-// 
-// TinyXML: 
+//
+// TinyXML:
 //   files: https://github.com/leethomason/tinyxml2
 //   docs:  http://leethomason.github.io/tinyxml2/
-// 
+//
 // OpenStreetMap: https://www.openstreetmap.org
-// OpenStreetMap docs:  
+// OpenStreetMap docs:
 //   https://wiki.openstreetmap.org/wiki/Main_Page
 //   https://wiki.openstreetmap.org/wiki/Map_Features
 //   https://wiki.openstreetmap.org/wiki/Node
@@ -26,19 +26,17 @@
 
 #include <map>
 
+#include "graph.h"
 #include "node.h"
 #include "tinyxml2.h"
-#include "graph.h"
 
 using namespace std;
 using namespace tinyxml2;
 
-
 //
 // Keeps track of all the nodes in the map.
 //
-class Nodes
-{
+class Nodes {
 private:
   map<long long, Node> MapNodes;
 
@@ -46,13 +44,13 @@ public:
   //
   // readMapNodes
   //
-  // Given an XML document, reads through the document and 
+  // Given an XML document, reads through the document and
   // stores all the nodes into the given vector. Each node
-  // is a point on the map, with a unique id along with 
+  // is a point on the map, with a unique id along with
   // (lat, lon) position. Some nodes are entrances to buildings,
   // which we capture as well.
   //
-  void readMapNodes(XMLDocument& xmldoc);
+  void readMapNodes(XMLDocument &xmldoc);
 
   //
   // sortByID
@@ -63,23 +61,17 @@ public:
 
   //
   // find
-  // 
+  //
   // Searches the nodes for the one with the matching ID, returning
   // true if found and false if not. If found, the node's Lat, Lon,
   // and IsEntrance data are returned via the reference parameters.
   //
-  bool find(long long id, double& lat, double& lon, bool& isEntrance);
+  bool find(long long id, double &lat, double &lon, bool &isEntrance);
 
   //
   // accessors / getters
   //
   int getNumMapNodes();
 
-  //
-  // Add mapNodes to graph
-  //
-  void addVerticesToGraph(graph& g);
-
-
+  void addVerticesToGraph(graph &g);
 };
-

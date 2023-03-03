@@ -2,58 +2,54 @@
 
 //
 // A collection of buildings in the Open Street Map.
-// 
+//
 // Prof. Joe Hummel
 // Northwestern University
 // CS 211: Winter 2023
-// 
+//
 
+#include <cassert>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cassert>
 
 #include "buildings.h"
-#include "nodes.h"
+#include "dist.h"
 #include "footways.h"
+#include "nodes.h"
 #include "osm.h"
 #include "tinyxml2.h"
 
 using namespace std;
 using namespace tinyxml2;
 
-
 //
 // readMapBuildings
 //
-// Given an XML document, reads through the document and 
+// Given an XML document, reads through the document and
 // stores all the buildings into the given vector.
 //
-void Buildings::readMapBuildings(XMLDocument& xmldoc)
-{
-  XMLElement* osm = xmldoc.FirstChildElement("osm");
+void Buildings::readMapBuildings(XMLDocument &xmldoc) {
+  XMLElement *osm = xmldoc.FirstChildElement("osm");
   assert(osm != nullptr);
 
   //
   // Parse the XML document way by way, looking for university buildings:
   //
-  XMLElement* way = osm->FirstChildElement("way");
+  XMLElement *way = osm->FirstChildElement("way");
 
-  while (way != nullptr)
-  {
-    const XMLAttribute* attr = way->FindAttribute("id");
+  while (way != nullptr) {
+    const XMLAttribute *attr = way->FindAttribute("id");
     assert(attr != nullptr);
 
     //
     // if this is a building, store info into vector:
     //
-    if (osmContainsKeyValue(way, "building", "university"))
-    {
+    if (osmContainsKeyValue(way, "building", "university")) {
       string name = osmGetKeyValue(way, "name");
 
-      string streetAddr = osmGetKeyValue(way, "addr:housenumber")
-        + " "
-        + osmGetKeyValue(way, "addr:street");
+      string streetAddr = osmGetKeyValue(way, "addr:housenumber") + " " +
+                          osmGetKeyValue(way, "addr:street");
 
       //
       // create building object, then add the associated
@@ -63,11 +59,10 @@ void Buildings::readMapBuildings(XMLDocument& xmldoc)
 
       Building B(id, name, streetAddr);
 
-      XMLElement* nd = way->FirstChildElement("nd");
+      XMLElement *nd = way->FirstChildElement("nd");
 
-      while (nd != nullptr)
-      {
-        const XMLAttribute* ndref = nd->FindAttribute("ref");
+      while (nd != nullptr) {
+        const XMLAttribute *ndref = nd->FindAttribute("ref");
         assert(ndref != nullptr);
 
         long long id = ndref->Int64Value();
@@ -82,10 +77,10 @@ void Buildings::readMapBuildings(XMLDocument& xmldoc)
       // add the building to the vector:
       //
       this->MapBuildings.push_back(B);
-    }//if
+    } // if
 
     way = way->NextSiblingElement("way");
-  }//while
+  } // while
 
   //
   // done:
@@ -97,9 +92,8 @@ void Buildings::readMapBuildings(XMLDocument& xmldoc)
 //
 // prints each building (id, name, address) to the console.
 //
-void Buildings::print()
-{
-  for (Building& B : this->MapBuildings) {
+void Buildings::print() {
+  for (Building &B : this->MapBuildings) {
     cout << B.ID << ": " << B.Name << ", " << B.StreetAddress << endl;
   }
 }
@@ -109,13 +103,11 @@ void Buildings::print()
 //
 // Prints each building that contains the given name.
 //
-void Buildings::findAndPrint(string name, Nodes& nodes, Footways& footways)
-{
-  // 
+void Buildings::findAndPrint(string name, Nodes &nodes, Footways &footways) {
+  //
   // find every building that contains this name:
   //
-  for (Building& B : this->MapBuildings)
-  {
+  for (Building &B : this->MapBuildings) {
     if (B.Name.find(name) != string::npos) { // contains name:
       B.print(nodes);
 
@@ -128,6 +120,42 @@ void Buildings::findAndPrint(string name, Nodes& nodes, Footways& footways)
 //
 // accessors / getters
 //
-int Buildings::getNumMapBuildings() {
-  return (int) this->MapBuildings.size();
+int Buildings::getNumMapBuildings() { return (int)this->MapBuildings.size(); }
+
+bool Buildings::findBuildingByNameAndPrint(long long &id, string name,
+                                           double &lat, double &lon,
+                                           Footways footways, Nodes nodes) {
+  bool found = false;
+  for (Building &B : this->MapBuildings) {
+    if (B.Name.find(name) != string::npos) {
+      found = true;
+      B.getLocation(lat, lon, nodes);
+      cout << "\tName: " << B.Name << endl;
+      cout << "\tApproximate Location: (" << lat << ", " << lon << ") " << endl;
+      long long footwayID = -1;
+      long long nodeID = -1;
+      double minDist = INT_MAX, dist = INT_MAX;
+      double lat1 = -1, lon1 = -1;
+      bool isEntrance = false;
+      // Finding nearest FootwayID and the closest nodeID
+      for (Footway F : footways.MapFootways) {
+        for (long long id : F.NodeIDs) {
+          nodes.find(id, lat1, lon1, isEntrance);
+          dist = distBetween2Points(lat, lon, lat1, lon1);
+          if (dist < minDist) {
+            footwayID = F.ID;
+            nodeID = id;
+            minDist = dist;
+          }
+        }
+      }
+      cout << "\tClosest footway ID " << footwayID << ", node ID " << nodeID
+           << ", distance " << minDist << endl;
+      id = nodeID;
+    }
+  }
+  if (found)
+    return true;
+  else
+    return false;
 }

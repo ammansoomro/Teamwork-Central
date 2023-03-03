@@ -29,6 +29,9 @@ using namespace std;
 using namespace tinyxml2;
 
 void sanityCheck(graph &G, Footways &footways, Nodes &nodes) {
+  vector<long long> from;
+  vector<long long> to;
+  vector<double> weights;
   long long footwayID = 986532630;
   vector<long long> nodeIDs;
   for (int i = 0; i < footways.getNumMapFootways(); i++) {
@@ -52,11 +55,34 @@ void sanityCheck(graph &G, Footways &footways, Nodes &nodes) {
           nodes.find(nodeIDs[j], lat2, lon2, isEntrance);
           double dist = distBetween2Points(lat1, lon1, lat2, lon2);
 
-          cout << "\tEdge: (" << nodeIDs[i] << ", " << nodeIDs[j] << ", "
-               << dist << ")" << endl;
+          from.push_back(nodeIDs[i]);
+          to.push_back(nodeIDs[j]);
+          weights.push_back(dist);
         }
       }
     }
+  }
+  // bubble sort
+  for (int i = 0; i < (int)weights.size(); i++) {
+    for (int j = 0; j < (int)weights.size() - 1; j++) {
+      if (weights[j] > weights[j + 1]) {
+        double temp = weights[j];
+        weights[j] = weights[j + 1];
+        weights[j + 1] = temp;
+
+        long long temp2 = from[j];
+        from[j] = from[j + 1];
+        from[j + 1] = temp2;
+
+        temp2 = to[j];
+        to[j] = to[j + 1];
+        to[j + 1] = temp2;
+      }
+    }
+  }
+  for (int i = 0; i < (int)weights.size(); i++) {
+    cout << "  Edge: (" << from[i] << ", " << to[i] << ", " << weights[i] << ")"
+         << endl;
   }
 }
 
@@ -70,7 +96,7 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
   int numberOfVisitedNodes = 0;
 
   for (int i = 0; i < g.NumVertices(); i++) {
-    distance[vertices[i]] = 1000000000000000000;
+    distance[vertices[i]] = INFINITY;
     previous[vertices[i]] = -1;
   }
   distance[start] = 0;
@@ -81,9 +107,8 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
     unvisited.erase(unvisited.begin());
 
     numberOfVisitedNodes++;
-    cout << current << " " << numberOfVisitedNodes << endl;
-    set<long long> neighbors = g.neighbors(current);
 
+    set<long long> neighbors = g.neighbors(current);
     for (auto it = neighbors.begin(); it != neighbors.end(); it++) {
       double lat1, lon1, lat2, lon2;
       bool isEntrance = false;
@@ -107,22 +132,25 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
         }
       }
     }
+  }
 
-    if (current == destination) {
-      break;
+  cout << "Shortest weighted path:" << endl;
+  if (distance[destination] == INFINITY) {
+    cout << "**Sorry, destination path unreachable" << endl;
+    return path;
+  } else {
+    cout << "  # of visited nodes: " << numberOfVisitedNodes << endl;
+    cout << "  Distance: " << distance[destination] << " miles" << endl;
+
+    long long current = destination;
+    while (current != start) {
+      path.push_back(current);
+      current = previous[current];
     }
-  }
-  cout << "# of visited nodes: " << numberOfVisitedNodes << endl;
-  cout << "Distance: " << distance[destination] << endl;
+    path.push_back(start);
 
-  long long current = destination;
-  while (current != start) {
-    path.push_back(current);
-    current = previous[current];
+    return path;
   }
-  path.push_back(start);
-
-  return path;
 }
 
 void navigate(graph G, Buildings &buildings, Footways &footways, Nodes &nodes) {
@@ -138,22 +166,23 @@ void navigate(graph G, Buildings &buildings, Footways &footways, Nodes &nodes) {
     return;
   }
 
-  cout << "Enter end building name  (partial or complete)> " << endl;
+  cout << "Enter destination building name (partial or complete)> " << endl;
   getline(cin, end);
   if (!buildings.findBuildingByNameAndPrint(endNodeID, end, lat2, lon2,
                                             footways, nodes)) {
-    cout << "**End Building not found" << endl;
+    cout << "**Destination Building not found" << endl;
     return;
   }
 
-  cout << "Shortest weighted path: " << endl;
   vector<long long> path = dijkstra(G, startNodeID, endNodeID, nodes);
-
-  for (int i = path.size() - 1; i >= 0; i--) {
-    if (i == 0) {
-      cout << path[i];
-    } else {
-      cout << path[i] << "->";
+  if (path.size() > 0) {
+    cout << "  Path: ";
+    for (int i = path.size() - 1; i >= 0; i--) {
+      if (i == 0) {
+        cout << path[i];
+      } else {
+        cout << path[i] << "->";
+      }
     }
   }
   cout << endl;
@@ -226,8 +255,7 @@ int main() {
     string name;
 
     cout << endl;
-    cout << "Enter building name (partial or complete), or * to list, or $ to "
-            "end> "
+    cout << "Enter building name, * to list, @ to navigate, or $ to end>"
          << endl;
 
     getline(cin, name);

@@ -29,7 +29,8 @@ using namespace tinyxml2;
 // Given an XML document, reads through the document and
 // stores all the buildings into the given vector.
 //
-void Buildings::readMapBuildings(XMLDocument &xmldoc) {
+void Buildings::readMapBuildings(XMLDocument &xmldoc)
+{
   XMLElement *osm = xmldoc.FirstChildElement("osm");
   assert(osm != nullptr);
 
@@ -38,14 +39,16 @@ void Buildings::readMapBuildings(XMLDocument &xmldoc) {
   //
   XMLElement *way = osm->FirstChildElement("way");
 
-  while (way != nullptr) {
+  while (way != nullptr)
+  {
     const XMLAttribute *attr = way->FindAttribute("id");
     assert(attr != nullptr);
 
     //
     // if this is a building, store info into vector:
     //
-    if (osmContainsKeyValue(way, "building", "university")) {
+    if (osmContainsKeyValue(way, "building", "university"))
+    {
       string name = osmGetKeyValue(way, "name");
 
       string streetAddr = osmGetKeyValue(way, "addr:housenumber") + " " +
@@ -61,7 +64,8 @@ void Buildings::readMapBuildings(XMLDocument &xmldoc) {
 
       XMLElement *nd = way->FirstChildElement("nd");
 
-      while (nd != nullptr) {
+      while (nd != nullptr)
+      {
         const XMLAttribute *ndref = nd->FindAttribute("ref");
         assert(ndref != nullptr);
 
@@ -92,8 +96,10 @@ void Buildings::readMapBuildings(XMLDocument &xmldoc) {
 //
 // prints each building (id, name, address) to the console.
 //
-void Buildings::print() {
-  for (Building &B : this->MapBuildings) {
+void Buildings::print()
+{
+  for (Building &B : this->MapBuildings)
+  {
     cout << B.ID << ": " << B.Name << ", " << B.StreetAddress << endl;
   }
 }
@@ -103,12 +109,15 @@ void Buildings::print() {
 //
 // Prints each building that contains the given name.
 //
-void Buildings::findAndPrint(string name, Nodes &nodes, Footways &footways) {
+void Buildings::findAndPrint(string name, Nodes &nodes, Footways &footways)
+{
   //
   // find every building that contains this name:
   //
-  for (Building &B : this->MapBuildings) {
-    if (B.Name.find(name) != string::npos) { // contains name:
+  for (Building &B : this->MapBuildings)
+  {
+    if (B.Name.find(name) != string::npos)
+    { // contains name:
       B.print(nodes);
 
       // which footways intersect with this building?
@@ -121,13 +130,12 @@ void Buildings::findAndPrint(string name, Nodes &nodes, Footways &footways) {
 // accessors / getters
 //
 int Buildings::getNumMapBuildings() { return (int)this->MapBuildings.size(); }
-
-bool Buildings::findBuildingByNameAndPrint(long long &id, string name,
-                                           double &lat, double &lon,
-                                           Footways footways, Nodes nodes) {
-  bool found = false;
-  for (Building &B : this->MapBuildings) {
-    if (B.Name.find(name) != string::npos) {
+bool Buildings::findBuildingByNameAndPrint(long long &id, string name,double &lat, double &lon,Footways footways, Nodes nodes)
+{
+  for (Building &B : this->MapBuildings)
+  {
+    if (B.Name.find(name) != string::npos)
+    {
       B.getLocation(lat, lon, nodes);
       cout << "  Name: " << B.Name << endl;
       cout << "  Approximate location: (" << lat << ", " << lon << ")" << endl;
@@ -137,11 +145,14 @@ bool Buildings::findBuildingByNameAndPrint(long long &id, string name,
       double lat1 = -1, lon1 = -1;
       bool isEntrance = false;
       // Finding nearest FootwayID and the closest nodeID
-      for (Footway F : footways.MapFootways) {
-        for (long long id : F.NodeIDs) {
+      for (Footway F : footways.MapFootways)
+      {
+        for (long long id : F.NodeIDs)
+        {
           nodes.find(id, lat1, lon1, isEntrance);
           dist = distBetween2Points(lat, lon, lat1, lon1);
-          if (dist < minDist) {
+          if (dist < minDist)
+          {
             footwayID = F.ID;
             nodeID = id;
             minDist = dist;
@@ -150,13 +161,9 @@ bool Buildings::findBuildingByNameAndPrint(long long &id, string name,
       }
       cout << "  Closest footway ID " << footwayID << ", node ID " << nodeID
            << ", distance " << minDist << endl;
-      if (!found)
-        id = nodeID;
-      found = true;
+      id = nodeID;
+      return true;
     }
   }
-  if (found)
-    return true;
-  else
-    return false;
+  return false;
 }

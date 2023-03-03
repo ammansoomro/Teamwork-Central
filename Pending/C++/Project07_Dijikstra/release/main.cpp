@@ -138,7 +138,7 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
 
   cout << "Shortest weighted path:" << endl;
   if (distance[destination] == INFINITY) {
-    cout << "**Sorry, destination path unreachable" << endl;
+    cout << "**Sorry, destination unreachable" << endl;
     return path;
   } else {
     cout << "  # nodes visited: " << numberOfVisitedNodes << endl;

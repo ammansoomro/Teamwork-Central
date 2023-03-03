@@ -128,10 +128,9 @@ bool Buildings::findBuildingByNameAndPrint(long long &id, string name,
   bool found = false;
   for (Building &B : this->MapBuildings) {
     if (B.Name.find(name) != string::npos) {
-      found = true;
       B.getLocation(lat, lon, nodes);
       cout << "  Name: " << B.Name << endl;
-      cout << "  Approximate Location: (" << lat << ", " << lon << ")" << endl;
+      cout << "  Approximate location: (" << lat << ", " << lon << ")" << endl;
       long long footwayID = -1;
       long long nodeID = -1;
       double minDist = INT_MAX, dist = INT_MAX;
@@ -151,7 +150,9 @@ bool Buildings::findBuildingByNameAndPrint(long long &id, string name,
       }
       cout << "  Closest footway ID " << footwayID << ", node ID " << nodeID
            << ", distance " << minDist << endl;
-      id = nodeID;
+      if (!found)
+        id = nodeID;
+      found = true;
     }
   }
   if (found)

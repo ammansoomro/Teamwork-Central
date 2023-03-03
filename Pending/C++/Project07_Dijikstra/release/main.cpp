@@ -91,6 +91,7 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
   vector<long long> vertices = g.getVertices();
   vector<long long> path;
   vector<long long> unvisited;
+  map<long long, bool> visited;
   map<long long, long long> previous;
   map<long long, double> distance;
   int numberOfVisitedNodes = 0;
@@ -98,15 +99,17 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
   for (int i = 0; i < g.NumVertices(); i++) {
     distance[vertices[i]] = INFINITY;
     previous[vertices[i]] = -1;
+    visited[vertices[i]] = false;
   }
   distance[start] = 0;
   unvisited.push_back(start);
-
   while (!unvisited.empty()) {
     long long current = unvisited[0];
     unvisited.erase(unvisited.begin());
-
-    numberOfVisitedNodes++;
+    if (!visited[current]) {
+      numberOfVisitedNodes++;
+      visited[current] = true;
+    }
 
     set<long long> neighbors = g.neighbors(current);
     for (auto it = neighbors.begin(); it != neighbors.end(); it++) {
@@ -122,9 +125,8 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
       }
     }
 
-    // bubble sort unvisited
-    for (int i = 0; i < unvisited.size(); i++) {
-      for (int j = 0; j < unvisited.size() - 1; j++) {
+    for (int i = 0; i < (int)unvisited.size(); i++) {
+      for (int j = 0; j < (int)unvisited.size() - 1; j++) {
         if (distance[unvisited[j]] > distance[unvisited[j + 1]]) {
           long long temp = unvisited[j];
           unvisited[j] = unvisited[j + 1];
@@ -139,7 +141,7 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
     cout << "**Sorry, destination path unreachable" << endl;
     return path;
   } else {
-    cout << "  # of visited nodes: " << numberOfVisitedNodes << endl;
+    cout << "  # nodes visited: " << numberOfVisitedNodes << endl;
     cout << "  Distance: " << distance[destination] << " miles" << endl;
 
     long long current = destination;
@@ -155,14 +157,14 @@ vector<long long> dijkstra(graph g, long long start, long long destination,
 
 void navigate(graph G, Buildings &buildings, Footways &footways, Nodes &nodes) {
   string start, end;
-  cout << "Enter start building name  (partial or complete)> " << endl;
+  cout << "Enter start building name (partial or complete)> " << endl;
   getline(cin, start);
   double lat1 = -1, lon1 = -1, lat2 = -1, lon2 = -1;
   long long startNodeID = -1, endNodeID = -1;
   Building startBuilding(-1, "startBuilding", "");
   if (!buildings.findBuildingByNameAndPrint(startNodeID, start, lat1, lon1,
                                             footways, nodes)) {
-    cout << "**Start Building not found" << endl;
+    cout << "**Start building not found" << endl;
     return;
   }
 
@@ -255,7 +257,7 @@ int main() {
     string name;
 
     cout << endl;
-    cout << "Enter building name, * to list, @ to navigate, or $ to end>"
+    cout << "Enter building name, * to list, @ to navigate, or $ to end> "
          << endl;
 
     getline(cin, name);

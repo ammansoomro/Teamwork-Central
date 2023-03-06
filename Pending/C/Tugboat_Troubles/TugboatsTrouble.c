@@ -3,18 +3,25 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
-#include <windows.h>
 
 typedef struct TugBoat {
   char name[20];
+<<<<<<< Updated upstream
   long long x, y;
   long long distanceToRoute;
   long long distanceToShip;
   long long xOnRoute, yOnRoute;
+=======
+  long long  x, y;
+  long long  distanceToRoute;
+  long long  distanceToShip;
+  long long  xOnRoute, yOnRoute;
+>>>>>>> Stashed changes
 
 } TugBoat;
 
 typedef struct Route {
+<<<<<<< Updated upstream
   long long shipX, shipY;   // Ship's coordinates
   long long harborX, harborY;     // Harbor's coordinates
   long long distance;     // Distance between ship and harbor
@@ -30,6 +37,22 @@ long long main() {
   int numberOfTugBoats;
 
   scanf("%lld %lld %lld %lld", &route.shipX, &route.shipY, &route.harborX, &route.harborY);
+=======
+  long long  shipX, shipY;   // Ship's coordinates
+  long long  harborX, harborY;     // Harbor's coordinates
+  long long  distance;     // Distance between ship and harbor
+
+} Route;
+
+long long  distance(long long  x1, long long  y1, long long  x2, long long  y2) {
+  return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+}
+
+long long  main() {
+  Route route;
+  long long  numberOfTugBoats;
+  scanf("%d %d %d %d", &route.shipX, &route.shipY, &route.harborX, &route.harborY);
+>>>>>>> Stashed changes
 
   route.distance = sqrt(pow(route.shipX - route.harborX, 2) + pow(route.shipY - route.harborY, 2));
 
@@ -37,8 +60,13 @@ long long main() {
 
   TugBoat *tugBoats = malloc(numberOfTugBoats * sizeof(TugBoat));
 
+<<<<<<< Updated upstream
   for (int i = 0; i < numberOfTugBoats; i++) {
     scanf("%lld %lld ", &tugBoats[i].x, &tugBoats[i].y);
+=======
+  for (long long  i = 0; i < numberOfTugBoats; i++) {
+    scanf("%d %d ", &tugBoats[i].x, &tugBoats[i].y);
+>>>>>>> Stashed changes
     scanf("%[^\n]s", tugBoats[i].name);
     double slope1 = (double)(route.shipY - route.harborY) / (double)(route.shipX - route.harborX);
     double slope2, b1, b2;
@@ -84,18 +112,28 @@ long long main() {
   // }
   // Selecting boats who tow ship max distance on route closer to harbor
   char **boatNames = malloc(numberOfTugBoats);
-  for (int i = 0; i < numberOfTugBoats; i++) {
+  for (long long  i = 0; i < numberOfTugBoats; i++) {
     boatNames[i] = malloc(20);
   }
-  int boatIndex = 0;
+  long long  boatIndex = 0;
   while (route.distance > 0) {
+<<<<<<< Updated upstream
     long long minDistance = INT_MAX;
     int minDistanceIndex = -1;
+=======
+    long long  minDistance = INFINITY;
+    long long  minDistanceIndex = -1;
+>>>>>>> Stashed changes
     // Updating distance to ship
-    for (int i = 0; i < numberOfTugBoats; i++) {
+    for (long long  i = 0; i < numberOfTugBoats; i++) {
       tugBoats[i].distanceToShip = distance(tugBoats[i].xOnRoute, tugBoats[i].yOnRoute, route.shipX, route.shipY);
+<<<<<<< Updated upstream
       long long dist = tugBoats[i].distanceToShip;
       long long distToHarbor = distance(tugBoats[i].xOnRoute, tugBoats[i].yOnRoute, route.harborX, route.harborY);
+=======
+      long long  dist = tugBoats[i].distanceToShip;
+      long long  distToHarbor = distance(tugBoats[i].xOnRoute, tugBoats[i].yOnRoute, route.harborX, route.harborY);
+>>>>>>> Stashed changes
       if (dist < minDistance && dist > 0 ) {
         minDistance = dist;
         minDistanceIndex = i;
@@ -138,7 +176,7 @@ long long main() {
     Sleep(1000);
   }
   printf("%d\n", boatIndex);
-  for (int i = 0; i < boatIndex; i++) {
+  for (long long  i = 0; i < boatIndex; i++) {
     printf("%s\n", boatNames[i]);
   }
   free(tugBoats);

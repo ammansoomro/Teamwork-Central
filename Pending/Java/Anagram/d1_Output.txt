@@ -1,0 +1,400 @@
+Welcome to the anagram solver.
+
+What is the name of the dictionary file? d1.txt
+
+phrase to scramble (return to quit)? Barbara Bush
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.001738357 seconds.
+Found 1 anagram(s) for Barbara Bush with no limit on the number of words.
+[abash, bar, rub]
+
+phrase to scramble (return to quit)? George Bush
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.0142673 seconds.
+Found 15 anagram(s) for George Bush with no limit on the number of words.
+[bee, go, shrug]
+[bog, he, surge]
+[bogus, erg, he]
+[bug, erg, hose]
+[bug, goes, her]
+[bugs, ego, her]
+[bugs, go, here]
+[bus, gorge, he]
+[egg, hose, rub]
+[ego, grub, she]
+[erg, goes, hub]
+[goes, grub, he]
+[gorge, he, sub]
+[bus, erg, go, he]
+[erg, go, he, sub]
+
+phrase to scramble (return to quit)? George Bush
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.002266296 seconds.
+Found 0 anagram(s) for George Bush with a limit of no more than 2 words.
+
+phrase to scramble (return to quit)? Jeb Bush!!!
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 2.00098E-4 seconds.
+Found 0 anagram(s) for Jeb Bush!!! with no limit on the number of words.
+
+phrase to scramble (return to quit)? Barbara !!*** - BHSU
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 5.58311E-4 seconds.
+Found 1 anagram(s) for Barbara !!*** - BHSU with no limit on the number of words.
+[abash, bar, rub]
+
+phrase to scramble (return to quit)? g3e3o3r3g3e33333
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 2.5325E-4 seconds.
+Found 1 anagram(s) for g3e3o3r3g3e33333 with no limit on the number of words.
+[ego, erg]
+
+phrase to scramble (return to quit)? george
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 4.0779E-4 seconds.
+Found 1 anagram(s) for george with no limit on the number of words.
+[ego, erg]
+
+phrase to scramble (return to quit)? jim
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 2.53697E-4 seconds.
+Found 0 anagram(s) for jim with no limit on the number of words.
+
+phrase to scramble (return to quit)? gem bus
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 3.43026E-4 seconds.
+Found 0 anagram(s) for gem bus with no limit on the number of words.
+
+phrase to scramble (return to quit)?
+
+Welcome to the anagram solver.
+
+What is the name of the dictionary file? d3.txt
+
+phrase to scramble (return to quit)? quick brown fox lazy dog
+Max words to include (0 for no max)? 3
+Time to find and print anagrams: elapsed time: 1.983949232 seconds.
+Found 0 anagram(s) for quick brown fox lazy dog with a limit of no more than 3 words.
+
+phrase to scramble (return to quit)? quick brown fox lazy dog
+Max words to include (0 for no max)? 4
+Time to find and print anagrams: elapsed time: 29.481316685 seconds.
+Found 6 anagram(s) for quick brown fox lazy dog with a limit of no more than 4 words.
+[background, fox, owly, qiz]
+[background, foxy, low, qiz]
+[background, foxy, owl, qiz]
+[boxwood, cranky, gulf, qiz]
+[flog, qiz, rockbound, waxy]
+[golf, qiz, rockbound, waxy]
+
+phrase to scramble (return to quit)? isabelle scott
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.015308438 seconds.
+Found 7 anagram(s) for isabelle scott with a limit of no more than 2 words.
+[best, oscillate]
+[bestial, closet]
+[bleat, solstice]
+[blest, societal]
+[closet, stabile]
+[obstacle, stile]
+[solstice, table]
+
+phrase to scramble (return to quit)? isablle scott
+Max words to include (0 for no max)? 1
+Time to find and print anagrams: elapsed time: 0.008052629 seconds.
+Found 0 anagram(s) for isablle scott with a limit of no more than 1 words.
+
+phrase to scramble (return to quit)? olivia scott
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.008779774 seconds.
+Found 0 anagram(s) for olivia scott with a limit of no more than 2 words.
+
+phrase to scramble (return to quit)? olivia scott
+Max words to include (0 for no max)? 3
+Time to find and print anagrams: elapsed time: 0.01343564 seconds.
+Found 87 anagram(s) for olivia scott with a limit of no more than 3 words.
+[act, stool, vii]
+[alto, cost, vii]
+[cast, loot, vii]
+[cast, tool, vii]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[soot, tic, vial]
+[stool, tic, via]
+[tic, tool, visa]
+
+phrase to scramble (return to quit)? kelly scott
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.005253482 seconds.
+Found 1 anagram(s) for kelly scott with a limit of no more than 2 words.
+[stocky, tell]
+
+phrase to scramble (return to quit)? kelly scott
+Max words to include (0 for no max)? 3
+Time to find and print anagrams: elapsed time: 0.008622553 seconds.
+Found 7 anagram(s) for kelly scott with a limit of no more than 3 words.
+[stocky, tell]
+[cell, sky, tot]
+[clot, let, sky]
+[colt, let, sky]
+[cot, sky, tell]
+[cyst, elk, lot]
+[etc, sky, toll]
+
+phrase to scramble (return to quit)? isabelle m scott
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.020730753 seconds.
+Found 2 anagram(s) for isabelle m scott with a limit of no more than 2 words.
+[battle, solecism]
+[solecism, tablet]
+
+phrase to scramble (return to quit)? dog dog dog
+Max words to include (0 for no max)? 3
+Time to find and print anagrams: elapsed time: 0.004487927 seconds.
+Found 6 anagram(s) for dog dog dog with a limit of no more than 3 words.
+[dog, dog, dog]
+[dog, dog, god]
+[dog, god, god]
+[dog, gog, odd]
+[god, god, god]
+[god, gog, odd]
+
+phrase to scramble (return to quit)? batman superman
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.017387141 seconds.
+Found 2 anagram(s) for batman superman with a limit of no more than 2 words.
+[mantrap, sunbeam]
+[rampant, sunbeam]
+
+phrase to scramble (return to quit)? batman superman
+Max words to include (0 for no max)? 3
+Time to find and print anagrams: elapsed time: 0.104448353 seconds.
+Found 237 anagram(s) for batman superman with a limit of no more than 3 words.
+[mantrap, sunbeam]
+[rampant, sunbeam]
+[abrupt, man, manse]
+[absent, mana, rump]
+[abut, manna, sperm]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[punt, reman, samba]
+[ramp, sunbeam, tan]
+[ran, sunbeam, tamp]
+
+phrase to scramble (return to quit)? wonder woman
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.007251341 seconds.
+Found 2 anagram(s) for wonder woman with a limit of no more than 2 words.
+[onward, women]
+[woman, wonder]
+
+phrase to scramble (return to quit)? tangle
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.01558 seconds.
+Found 10 anagram(s) for tangle with no limit on the number of words.
+[tangle]
+[ant, gel]
+[ant, leg]
+[gal, net]
+[gal, ten]
+[gel, tan]
+[lag, net]
+[lag, ten]
+[leg, tan]
+[let, nag]
+
+phrase to scramble (return to quit)? ISabell ScoTT!!
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.102876596 seconds.
+Found 708 anagram(s) for ISabell ScoTT!! with no limit on the number of words.
+[balletic, toss]
+[blat, solstice]
+[list, obstacle]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[lit, lob, sac, set]
+[lit, lob, sat, sec]
+[lob, sac, set, til]
+[lob, sat, sec, til]
+
+phrase to scramble (return to quit)? Olivia A. Scott
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.007765434 seconds.
+Found 127 anagram(s) for Olivia A. Scott with no limit on the number of words.
+[ail, coot, vista]
+[ail, scoot, vita]
+[ala, coot, visit]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[oil, sic, tao, vat]
+[ova, sic, tao, til]
+[sac, til, too, via]
+
+phrase to scramble (return to quit)? Purple Big NArwarl
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 3.875700345 seconds.
+Found 12212 anagram(s) for Purple Big NArwarl with no limit on the number of words.
+[apparel, blur, wring]
+[apparel, burl, wring]
+[awn, burglar, ripple]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[pup, rag, reb, rill, wan]
+[pup, ran, reb, rig, wall]
+[pup, ran, reb, rill, wag]
+
+phrase to scramble (return to quit)? world war z pitt
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.056983442 seconds.
+Found 4 anagram(s) for world war z pitt with no limit on the number of words.
+[dirt, prow, waltz]
+[drop, waltz, writ]
+[prod, waltz, writ]
+[trip, waltz, word]
+
+phrase to scramble (return to quit)? walking danger
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.173815131 seconds.
+Found 1311 anagram(s) for walking danger with no limit on the number of words.
+[aging, drank, lew]
+[aging, drawl, ken]
+[aging, drawn, elk]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[leg, nag, rink, wad]
+[link, nag, rag, wed]
+[link, nag, red, wag]
+
+phrase to scramble (return to quit)? Edsger W. Dijkstra
+Max words to include (0 for no max)? 0
+Time to find and print anagrams: elapsed time: 0.300778598 seconds.
+Found 150 anagram(s) for Edsger W. Dijkstra with no limit on the number of words.
+[address, jerk, twig]
+[add, grew, jest, risk]
+[add, grist, jerk, sew]
+[add, jerk, rest, swig]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[grid, jess, trek, wad]
+[grist, jerk, sad, wed]
+[jag, red, skid, wrest]
+
+phrase to scramble (return to quit)? computer science student smile
+Max words to include (0 for no max)? 1
+Time to find and print anagrams: elapsed time: 0.018522969 seconds.
+Found 0 anagram(s) for computer science student smile with a limit of no more than 1 words.
+
+phrase to scramble (return to quit)? computer science student smile
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.209970896 seconds.
+Found 0 anagram(s) for computer science student smile with a limit of no more than 2 words.
+
+phrase to scramble (return to quit)? computer science student smile
+Max words to include (0 for no max)? 3
+Time to find and print anagrams: elapsed time: 33.696447714 seconds.
+Found 1 anagram(s) for computer science student smile with a limit of no more than 3 words.
+[circumspect, delouse, sentiment]
+ 
+
+phrase to scramble (return to quit)? dark knight inception memento
+Max words to include (0 for no max)? 1
+Time to find and print anagrams: elapsed time: 0.019461824 seconds.
+Found 0 anagram(s) for dark knight inception memento with a limit of no more than 1 words.
+
+phrase to scramble (return to quit)? dark knight inception memento
+Max words to include (0 for no max)? 2
+Time to find and print anagrams: elapsed time: 0.200075841 seconds.
+Found 0 anagram(s) for dark knight inception memento with a limit of no more than 2 words.
+
+phrase to scramble (return to quit)? dark knight inception memento
+Max words to include (0 for no max)? 3
+Time to find and print anagrams: elapsed time: 31.735389227 seconds.
+Found 0 anagram(s) for dark knight inception memento with a limit of no more than 3 words.
+
+phrase to scramble (return to quit)? dark knight inception memento
+Max words to include (0 for no max)? 4
+Time to find and print anagrams: elapsed time: 2214.11937848 seconds.
+Found 4998 anagram(s) for dark knight inception memento with a limit of no more than 4 words.
+[ache, impertinent, kingdom, knot]
+[ache, impertinent, kingdom, tonk]
+[ache, kingdom, kitten, prominent]
+[aching, idempotent, kink, mentor]
+<ANAGRAMS TRIMMED FOR CLARITY - PROGRAM WOULD PRINT OUT ALL ANAGRAMS>
+[nighttime, nook, pitman, redneck]
+[nighttime, norm, panicked, token]
+[oncoming, pediment, rink, taketh]
+
+phrase to scramble (return to quit)?
+
+***************************************************************************
+
+Timing data from AnagramFinderTester using sample solution:
+
+Passed test 0
+Time to find anagrams: 0.01735372
+
+Passed test 1
+Time to find anagrams: 0.010898724
+
+Passed test 2
+Time to find anagrams: 0.006852515
+
+Passed test 3
+Time to find anagrams: 0.007759216
+
+Passed test 4
+Time to find anagrams: 0.007190183
+
+Passed test 5
+Time to find anagrams: 0.002581195
+
+Passed test 6
+Time to find anagrams: 0.009588698
+
+Passed test 7
+Time to find anagrams: 0.042507301
+
+Passed test 8
+Time to find anagrams: 0.017179973
+
+Passed test 9
+Time to find anagrams: 0.260864555
+
+Passed test 10
+Time to find anagrams: 0.002369482
+
+Passed test 11
+Time to find anagrams: 0.003076977
+
+Passed test 12
+Time to find anagrams: 0.003933206
+
+Passed test 13
+Time to find anagrams: 0.138213826
+
+Passed test 14
+Time to find anagrams: 0.003782238
+
+Passed test 15
+Time to find anagrams: 0.003577672
+
+Passed test 16
+Time to find anagrams: 0.003003279
+
+Passed test 17
+Time to find anagrams: 0.003542387
+
+Passed test 18
+Time to find anagrams: 0.00662919
+
+Passed test 19
+Time to find anagrams: 0.008324229
+
+Passed test 20
+Time to find anagrams: 0.004661694
+
+Passed test 21
+Time to find anagrams: 0.117645562
+
+Passed test 22
+Time to find anagrams: 6.057472332
+
+Passed test 23
+Time to find anagrams: 8.685376566
+
+Passed test 24
+Time to find anagrams: 0.0018603

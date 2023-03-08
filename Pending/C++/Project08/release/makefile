@@ -1,6 +1,6 @@
 build:
 	rm -f ./a.out
-	g++ -std=c++17 -g -Wall -I. main.cpp gtest.o -lpthread
+	g++ -std=c++17 -g -Wall -I. main.cpp gtest.o graph.cpp -lpthread
 
 run:
 	./a.out

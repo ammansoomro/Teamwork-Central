@@ -2,12 +2,12 @@
 
 //
 // Graph class implemented as ...
-// 
+//
 //    ?????????
-// 
-// For this implementation of graph, the vertices are 
+//
+// For this implementation of graph, the vertices are
 // string, and the weights are doubles.  Example:
-// 
+//
 //   graph  G;
 //   G.addVertex("Chicago");
 //   G.addVertex("New York");
@@ -48,30 +48,31 @@ bool graph::addEdge(string vertex1, string vertex2, double weight) {
   }
 
   adjacencyList[vertex1][vertex2] = weight;
-  
+
   return true;
 }
 
-bool graph::getWeight(string vertex1, string vertex2, double& weight) const {
+bool graph::getWeight(string vertex1, string vertex2, double &weight) const {
   if (adjacencyList.find(vertex1) == adjacencyList.end() ||
       adjacencyList.find(vertex2) == adjacencyList.end()) {
     return false;
   }
-  if (adjacencyList.at(vertex1).find(vertex2) == adjacencyList.at(vertex1).end()) {
+  if (adjacencyList.at(vertex1).find(vertex2) ==
+      adjacencyList.at(vertex1).end()) {
     return false;
   }
   weight = adjacencyList.at(vertex1).at(vertex2);
   return true;
 }
 
-vector<string> graph::neighbors(string vertex) const {
-  vector<string> neighbors;
+set<string> graph::neighbors(string vertex) const {
+  set<string> neighbors;
   if (adjacencyList.find(vertex) == adjacencyList.end()) {
     return neighbors;
   }
   for (auto it = adjacencyList.at(vertex).begin();
        it != adjacencyList.at(vertex).end(); it++) {
-    neighbors.push_back(it->first);
+    neighbors.insert(it->first);
   }
   return neighbors;
 }
@@ -84,7 +85,7 @@ vector<string> graph::getVertices() const {
   return vertices;
 }
 
-void graph::print(ostream& output) const {
+void graph::print(ostream &output) const {
   output << "# of Vertices: " << numVertices << endl;
   output << "# of Edges: " << numEdges << endl;
 

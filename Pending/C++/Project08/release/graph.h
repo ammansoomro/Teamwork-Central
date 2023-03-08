@@ -2,12 +2,14 @@
 
 //
 // Graph class implemented as ...
-// 
-//    ?????????
-// 
-// For this implementation of graph, the vertices are 
+//
+//    Adjacency List (map of maps) as <stirng, map<string, double>>
+//    where the first string is the vertex and the second string is the
+//    neighbor and the double is the weight
+//
+// For this implementation of graph, the vertices are
 // string, and the weights are doubles.  Example:
-// 
+//
 //   graph  G;
 //   G.addVertex("Chicago");
 //   G.addVertex("New York");
@@ -22,18 +24,17 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
+#include <map>
+#include <set>
 #include <string>
 #include <unordered_map>
-#include <map>
+#include <vector>
 
 using namespace std;
 
-
-class graph
-{
+class graph {
 private:
-  unordered_map<string, map<string, double>> adjacencyList;
+  map<string, map<string, double>> adjacencyList;
   int numVertices;
   int numEdges;
   //
@@ -64,7 +65,7 @@ public:
   // addVertex
   //
   // Adds the vertex v to the graph and returns true. However,
-  // if v is already in the graph, it is not added again and 
+  // if v is already in the graph, it is not added again and
   // false is returned.
   //
   bool addVertex(string v);
@@ -84,13 +85,13 @@ public:
   //
   // getWeight
   //
-  // Returns the weight associated with a given edge.  If 
+  // Returns the weight associated with a given edge.  If
   // the edge exists, the weight is returned via the reference
-  // parameter and true is returned. If the edge does not 
+  // parameter and true is returned. If the edge does not
   // exist, the weight parameter is unchanged and false is
   // returned.
   //
-  bool getWeight(string from, string to, double& weight) const;
+  bool getWeight(string from, string to, double &weight) const;
 
   //
   // neighbors
@@ -99,25 +100,25 @@ public:
   // vertices that can be reached from v along one edge. If
   // v does not exist, an empty set is returned.
   //
-  vector<string> neighbors(string v) const;
+  set<string> neighbors(string v) const;
 
   //
   // getVertices
   //
   // Returns a vector containing all the vertices currently in
-  // the graph. There is no guaranteed order to the vertices 
-  // in the returned vector; the order should be considered 
+  // the graph. There is no guaranteed order to the vertices
+  // in the returned vector; the order should be considered
   // random.
   //
   vector<string> getVertices() const;
 
   //
   // print
-  // 
-  // Prints the internal state of the graph to the given 
+  //
+  // Prints the internal state of the graph to the given
   // output stream for debugging purposes. The output will
   // contain the # of vertices, the # of edges, the vertices,
-  // and the edges. Vertices are output as strings and the 
+  // and the edges. Vertices are output as strings and the
   // weights as doubles.
   //
   // Example:
@@ -125,6 +126,5 @@ public:
   //    ...
   //    G.print(cout);  // print to console
   //
-  void print(ostream& output) const;
-  
+  void print(ostream &output) const;
 };

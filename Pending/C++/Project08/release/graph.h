@@ -25,7 +25,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include <set>
+#include <map>
 
 using namespace std;
 
@@ -33,7 +33,7 @@ using namespace std;
 class graph
 {
 private:
-  unordered_map<string, set<pair<string, double>>> adjacencyList;
+  unordered_map<string, map<string, double>> adjacencyList;
   int numVertices;
   int numEdges;
   //
@@ -99,7 +99,7 @@ public:
   // vertices that can be reached from v along one edge. If
   // v does not exist, an empty set is returned.
   //
-  set<string> neighbors(string v) const;
+  vector<string> neighbors(string v) const;
 
   //
   // getVertices
@@ -126,5 +126,5 @@ public:
   //    G.print(cout);  // print to console
   //
   void print(ostream& output) const;
-
+  
 };

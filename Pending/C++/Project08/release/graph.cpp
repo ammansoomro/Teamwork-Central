@@ -31,7 +31,7 @@ bool graph::addVertex(string vertex) {
   if (adjacencyList.find(vertex) != adjacencyList.end()) {
     return false;
   }
-  adjacencyList[vertex] = set<pair<string, double>>();
+  adjacencyList[vertex] = map<string, double>();
   numVertices++;
   return true;
 }
@@ -41,17 +41,14 @@ bool graph::addEdge(string vertex1, string vertex2, double weight) {
       adjacencyList.find(vertex2) == adjacencyList.end()) {
     return false;
   }
-  
-  if (adjacencyList[vertex1].find(make_pair(vertex2, weight)) !=
-      adjacencyList[vertex1].end()) {
-    // edge already exists, so overwrite the weight
-    adjacencyList[vertex1].insert(make_pair(vertex2, weight));
-    adjacencyList[vertex2].insert(make_pair(vertex1, weight));
-  } else {
-    adjacencyList[vertex1].insert(make_pair(vertex2, weight));
-    adjacencyList[vertex2].insert(make_pair(vertex1, weight));
+
+  // overwriting weight if edge already exists
+  if (adjacencyList[vertex1].find(vertex2) == adjacencyList[vertex1].end()) {
     numEdges++;
   }
+
+  adjacencyList[vertex1][vertex2] = weight;
+  
   return true;
 }
 
@@ -60,24 +57,21 @@ bool graph::getWeight(string vertex1, string vertex2, double& weight) const {
       adjacencyList.find(vertex2) == adjacencyList.end()) {
     return false;
   }
-  for (auto it = adjacencyList.at(vertex1).begin();
-       it != adjacencyList.at(vertex1).end(); it++) {
-    if (it->first == vertex2) {
-      weight = it->second;
-      return true;
-    }
+  if (adjacencyList.at(vertex1).find(vertex2) == adjacencyList.at(vertex1).end()) {
+    return false;
   }
-  return false;
+  weight = adjacencyList.at(vertex1).at(vertex2);
+  return true;
 }
 
-set<string> graph::neighbors(string vertex) const {
-  set<string> neighbors;
+vector<string> graph::neighbors(string vertex) const {
+  vector<string> neighbors;
   if (adjacencyList.find(vertex) == adjacencyList.end()) {
     return neighbors;
   }
   for (auto it = adjacencyList.at(vertex).begin();
        it != adjacencyList.at(vertex).end(); it++) {
-    neighbors.insert(it->first);
+    neighbors.push_back(it->first);
   }
   return neighbors;
 }
@@ -93,7 +87,7 @@ vector<string> graph::getVertices() const {
 void graph::print(ostream& output) const {
   output << "# of Vertices: " << numVertices << endl;
   output << "# of Edges: " << numEdges << endl;
-  
+
   for (auto it = adjacencyList.begin(); it != adjacencyList.end(); it++) {
     output << it->first << ": ";
     for (auto it2 = it->second.begin(); it2 != it->second.end(); it2++) {

@@ -8,6 +8,8 @@
     "xutility": "cpp",
     "xtree": "cpp",
     "queue": "cpp",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "*.tcc": "cpp",
+    "set": "cpp"
   }
 }

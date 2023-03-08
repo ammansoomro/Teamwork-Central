@@ -7,7 +7,6 @@ Remote URL: git remote add origin https://github.com/ammansoomro/GitCollab.git
 ## Python:
 
 ## Java:
-1. Anagram --> (08 March, 02:00am ) --> Rs. Dekhte hain yeh abhi, kaam krlo  
-NOTE: AnagramSolver.Java mein he masti krni hai bss. (I Guess)
-## C++:
 
+## C++:
+Project 08 --> 09/03/2023 Thursday 11:00pm --> Paise: 5-6k

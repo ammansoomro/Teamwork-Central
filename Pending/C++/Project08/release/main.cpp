@@ -112,12 +112,14 @@ TEST(testing, test03)
     ASSERT_TRUE(G.addEdge("San Francisco", "Boston", 2500));
     ASSERT_TRUE(G.addEdge("San Francisco", "Denver", 1700));
     ASSERT_TRUE(G.addEdge("Denver", "Boston", 1600));
-    ASSERT_TRUE(G.addEdge("Denver", "Boston", 1800));
 
-    //  Check that the graph has the correct number of vertices and edges
-    ASSERT_TRUE( G.NumVertices() == 8 );
     ASSERT_TRUE( G.NumEdges() == 18 );
+    ASSERT_TRUE( G.NumVertices() == 8 );
+    
     double weight; 
+    ASSERT_TRUE(G.getWeight("Denver", "Boston", weight));
+    //  Check that the graph has the correct number of vertices and edges
+    ASSERT_TRUE(G.addEdge("Denver", "Boston", 1800));
     ASSERT_TRUE(G.getWeight("Denver", "Boston", weight));
     ASSERT_TRUE( weight == 1800);
 }

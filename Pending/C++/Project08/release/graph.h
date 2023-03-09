@@ -27,14 +27,13 @@
 #include <map>
 #include <set>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 using namespace std;
 
-class graph {
+template <typename vertexT, typename weightT> class graph {
 private:
-  map<string, map<string, double>> adjacencyList;
+  map<vertexT, map<vertexT, weightT>> adjacencyList;
   int numVertices;
   int numEdges;
   //
@@ -68,7 +67,7 @@ public:
   // if v is already in the graph, it is not added again and
   // false is returned.
   //
-  bool addVertex(string v);
+  bool addVertex(vertexT v);
 
   //
   // addEdge
@@ -80,7 +79,7 @@ public:
   // NOTE: if the edge already exists, the existing edge weight
   // is overwritten with the new edge weight.
   //
-  bool addEdge(string from, string to, double weight);
+  bool addEdge(vertexT from, vertexT to, weightT weight);
 
   //
   // getWeight
@@ -91,7 +90,7 @@ public:
   // exist, the weight parameter is unchanged and false is
   // returned.
   //
-  bool getWeight(string from, string to, double &weight) const;
+  bool getWeight(vertexT from, vertexT to, weightT &weight) const;
 
   //
   // neighbors
@@ -100,7 +99,7 @@ public:
   // vertices that can be reached from v along one edge. If
   // v does not exist, an empty set is returned.
   //
-  set<string> neighbors(string v) const;
+  set<vertexT> neighbors(vertexT v) const;
 
   //
   // getVertices
@@ -110,7 +109,7 @@ public:
   // in the returned vector; the order should be considered
   // random.
   //
-  vector<string> getVertices() const;
+  vector<vertexT> getVertices() const;
 
   //
   // print

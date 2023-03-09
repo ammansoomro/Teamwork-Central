@@ -20,23 +20,32 @@
 //
 
 #include "graph.h"
+template <typename vertexT, typename weightT>
+graph<vertexT, weightT>::graph() : numVertices(0), numEdges(0) {}
 
-graph::graph() : numVertices(0), numEdges(0) {}
+template <typename vertexT, typename weightT>
+int graph<vertexT, weightT>::NumVertices() const {
+  return numVertices;
+}
 
-int graph::NumVertices() const { return numVertices; }
+template <typename vertexT, typename weightT>
+int graph<vertexT, weightT>::NumEdges() const {
+  return numEdges;
+}
 
-int graph::NumEdges() const { return numEdges; }
-
-bool graph::addVertex(string vertex) {
+template <typename vertexT, typename weightT>
+bool graph<vertexT, weightT>::addVertex(vertexT vertex) {
   if (adjacencyList.find(vertex) != adjacencyList.end()) {
     return false;
   }
-  adjacencyList[vertex] = map<string, double>();
+  adjacencyList[vertex] = map<vertexT, weightT>();
   numVertices++;
   return true;
 }
 
-bool graph::addEdge(string vertex1, string vertex2, double weight) {
+template <typename vertexT, typename weightT>
+bool graph<vertexT, weightT>::addEdge(vertexT vertex1, vertexT vertex2,
+                                      weightT weight) {
   if (adjacencyList.find(vertex1) == adjacencyList.end() ||
       adjacencyList.find(vertex2) == adjacencyList.end()) {
     return false;
@@ -52,7 +61,9 @@ bool graph::addEdge(string vertex1, string vertex2, double weight) {
   return true;
 }
 
-bool graph::getWeight(string vertex1, string vertex2, double &weight) const {
+template <typename vertexT, typename weightT>
+bool graph<vertexT, weightT>::getWeight(vertexT vertex1, vertexT vertex2,
+                                        weightT &weight) const {
   if (adjacencyList.find(vertex1) == adjacencyList.end() ||
       adjacencyList.find(vertex2) == adjacencyList.end()) {
     return false;
@@ -65,8 +76,9 @@ bool graph::getWeight(string vertex1, string vertex2, double &weight) const {
   return true;
 }
 
-set<string> graph::neighbors(string vertex) const {
-  set<string> neighbors;
+template <typename vertexT, typename weightT>
+set<vertexT> graph<vertexT, weightT>::neighbors(vertexT vertex) const {
+  set<vertexT> neighbors;
   if (adjacencyList.find(vertex) == adjacencyList.end()) {
     return neighbors;
   }
@@ -77,15 +89,17 @@ set<string> graph::neighbors(string vertex) const {
   return neighbors;
 }
 
-vector<string> graph::getVertices() const {
-  vector<string> vertices;
+template <typename vertexT, typename weightT>
+vector<vertexT> graph<vertexT, weightT>::getVertices() const {
+  vector<vertexT> vertices;
   for (auto it = adjacencyList.begin(); it != adjacencyList.end(); it++) {
     vertices.push_back(it->first);
   }
   return vertices;
 }
 
-void graph::print(ostream &output) const {
+template <typename vertexT, typename weightT>
+void graph<vertexT, weightT>::print(ostream &output) const {
   output << "# of Vertices: " << numVertices << endl;
   output << "# of Edges: " << numEdges << endl;
 

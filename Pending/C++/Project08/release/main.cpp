@@ -1,3 +1,4 @@
+#include "graph.cpp"
 #include "graph.h"
 #include "gtest/gtest.h"
 #include <iostream>
@@ -6,7 +7,7 @@ using namespace std;
 
 // Constructing a graph with 8 vertices and 18 edges
 TEST(testing, test01) {
-  graph G;
+  graph<string, double> G;
   // ADDING UNIQUE VERTICES AND EDGES
   ASSERT_TRUE(G.addVertex("Chicago"));
   ASSERT_TRUE(G.addVertex("New York"));
@@ -43,7 +44,7 @@ TEST(testing, test01) {
 
 // Tries entering a duplicate vertex in the graph
 TEST(testing, test02) {
-  graph G;
+  graph<string, double> G;
 
   ASSERT_TRUE(G.addVertex("Chicago"));
   ASSERT_TRUE(G.addVertex("New York"));
@@ -61,7 +62,7 @@ TEST(testing, test02) {
 
 // Adding a duplicate edge with different weight.
 TEST(testing, test03) {
-  graph G;
+  graph<string, int> G;
 
   ASSERT_TRUE(G.addVertex("Chicago"));
   ASSERT_TRUE(G.addVertex("New York"));
@@ -94,7 +95,7 @@ TEST(testing, test03) {
   ASSERT_TRUE(G.NumVertices() == 8);
   ASSERT_TRUE(G.NumEdges() == 18);
 
-  double weight;
+  int weight;
   ASSERT_TRUE(G.getWeight("Denver", "Boston", weight));
   ASSERT_TRUE(weight == 1600);
   ASSERT_TRUE(G.addEdge("Denver", "Boston", 1800));
@@ -104,7 +105,7 @@ TEST(testing, test03) {
 // Tries to get weight of a non existing edge
 TEST(testing, test04) {
 
-  graph G;
+  graph<string, int> G;
   ASSERT_TRUE(G.addVertex("Chicago"));
   ASSERT_TRUE(G.addVertex("New York"));
   ASSERT_TRUE(G.addVertex("Los Angeles"));
@@ -129,7 +130,7 @@ TEST(testing, test04) {
   ASSERT_TRUE(G.addEdge("San Francisco", "Boston", 2500));
   ASSERT_TRUE(G.addEdge("Denver", "Boston", 1600));
 
-  double weight;
+  int weight;
   ASSERT_TRUE(G.NumVertices() == 8);
   ASSERT_TRUE(G.NumEdges() == 14);
   ASSERT_FALSE(G.getWeight("Denver", "New York", weight));
@@ -139,7 +140,7 @@ TEST(testing, test04) {
 
 // Getting existing edge weights
 TEST(testing, test05) {
-  graph G;
+  graph<string, double> G;
   ASSERT_TRUE(G.addVertex("Chicago"));
   ASSERT_TRUE(G.addVertex("New York"));
   ASSERT_TRUE(G.addVertex("Los Angeles"));
@@ -183,7 +184,7 @@ TEST(testing, test05) {
 
 // Checking getVertices and neighbors function
 TEST(testing, test06) {
-  graph G;
+  graph<string, double> G;
   ASSERT_TRUE(G.addVertex("Chicago"));
   ASSERT_TRUE(G.addVertex("New York"));
   ASSERT_TRUE(G.addVertex("Los Angeles"));

@@ -64,7 +64,7 @@ bool Items<T>::update_number_of_items(int n) {
 		return false;
 	}
 	T* temp = new T[n];
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < _number_of_items; i++) {
 		temp[i] = _items[i];
 	}
 	delete[] _items;

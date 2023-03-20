@@ -17,18 +17,14 @@ int main() {
   std ::initializer_list<int> il{5, 7, 1, 3, 1024, 19, 29, -64, 0};
   Items<int> item_int_array(il.size(), il);
   // A2 Todo : Sort the Items <int > using std :: sort
-  std ::cout << "A2 Todo : sort the Items using std :: sort \n";
-	std ::sort(item_int_array.begin(), item_int_array.end());
+  std ::sort(item_int_array.begin(), item_int_array.end());
   // A2 Todo get max and min using Items member functions
-  std ::cout << "max = "
-             << item_int_array.back()
-             << "\n";
-  std ::cout << "min = "
-             << item_int_array.front()
-             << "\n";
+  std ::cout << "max = " << item_int_array.back() << "\n";
+  std ::cout << "min = " << item_int_array.front() << "\n";
   std ::cout << " average = "
-             << std ::accumulate(item_int_array.begin(), item_int_array.end(), 0.000) /
-										item_int_array.number_of_items()
+             << std ::accumulate(item_int_array.begin(), item_int_array.end(),
+                                 0.000) /
+                    item_int_array.number_of_items()
              << "\n";
   std ::cout << std ::endl;
   // Part II
@@ -45,41 +41,34 @@ int main() {
   // count number of char ’s in file
   int base_count = 0;
   for (; ifs_iter != ifs_end_iter; ifs_iter++) base_count++;
+
   // reset ifstream and istream_iterator to beginning of file
   ifs.clear();
   ifs_iter = ifs.seekg(0, std ::ios ::beg);
   // copy file data to the Items bases
   Items<char> bases;
   bases.update_number_of_items(base_count);
-  std ::copy(ifs_iter, ifs_end_iter, bases.begin());
+  std::cout << "base_count = " << base_count << std::endl;
+
+  std::copy(ifs_iter, ifs_end_iter, bases.begin());
   // close the file
   ifs.close();
   // A2 Todo : count of A’s, G’s T’s and C’s with std :: count
-	
-	std::ptrdiff_t countA = std::count(bases.begin(), bases.end(), 'A');
-	std::ptrdiff_t countG = std::count(bases.begin(), bases.end(), 'G');
-	std::ptrdiff_t countT = std::count(bases.begin(), bases.end(), 'T');
-	std::ptrdiff_t countC = std::count(bases.begin(), bases.end(), 'C');
-	std ::cout << "(A) denine count = "
-             << countA
-             << "\n";
-  std ::cout << "(G) uanine count = "
-             << countG
-             << "\n";
-  std ::cout << "(T) hymine count = "
-             << countT
-             << "\n";
-  std ::cout << "(C) ytosine count = "
-             << countC
-             << "\n";
+
+  std::ptrdiff_t countA = std::count(bases.begin(), bases.end(), 'A');
+  std::ptrdiff_t countG = std::count(bases.begin(), bases.end(), 'G');
+  std::ptrdiff_t countT = std::count(bases.begin(), bases.end(), 'T');
+  std::ptrdiff_t countC = std::count(bases.begin(), bases.end(), 'C');
+  std ::cout << "(A) denine count = " << countA << "\n";
+  std ::cout << "(G) uanine count = " << countG << "\n";
+  std ::cout << "(T) hymine count = " << countT << "\n";
+  std ::cout << "(C) ytosine count = " << countC << "\n";
   std ::cout << std ::endl;
   // A/T and G/C
-  std ::cout << std ::fixed << std ::setprecision(2) << "A/T = "
-             << countT
-             << "\n";
-  std ::cout << std ::fixed << std ::setprecision(2) << "G/C = "
-             << countG / countC
-             << "\n";
+  std ::cout << std ::fixed << std ::setprecision(2)
+             << "A/T = " << (float)countA / (float)countT << "\n";
+  std ::cout << std ::fixed << std ::setprecision(2)
+             << "G/C = " << (float)countG / (float)countC << "\n";
   std ::cout << std ::endl;
   std ::cout << "\n ***** Tests completed , enter any key to exit *******\n";
   char s;

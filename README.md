@@ -1,6 +1,6 @@
 Remote URL: git remote add origin https://github.com/ammansoomro/GitCollab.git
 
-Teamwork-Central: Unleash the Power of Collaboration
+## Teamwork-Central: Unleash the Power of Collaboration
 
 Teamwork-Central is a GitHub repository built for seamless collaboration among team members working on various projects. It's all about unlocking our collective potential and working together towards success.
 
